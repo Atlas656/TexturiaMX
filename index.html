@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Texturia MX</title>
+    <link rel="icon" type="Cubo.png" href="Cubo.png"/>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="Titulo">
+        <img src="Texturia.png" alt="Texturia">
+    </div>
+</header>
+
+<section class="container">
+
+    
+    <div class="product">
+        <img src="Playera.jpg" alt="Playera">
+        <h3>Playera Unisex</h3>
+        <p>Playera casual de algodón, perfecta para cualquier ocasión.</p>
+        <p><strong>Precio: $150</strong></p>
+        <label>Cantidad:</label>
+        <input type="number" min="1" value="1" id="cantidad1">
+        <button class="button" onclick="agregarAlCarrito('Playera', 150, document.getElementById('cantidad1').value)">Agregar al Carrito</button>
+    </div>
+
+
+    <div class="product">
+        <img src="Pantalon.jpg" alt="Pantalón">
+        <h3>Pantalón Unisex</h3>
+        <p>Pantalón cómodo de tela elástica, ideal para el día a día.</p>
+        <p><strong>Precio: $320</strong></p>
+        <label>Cantidad:</label>
+        <input type="number" min="1" value="1" id="cantidad2">
+        <button class="button" onclick="agregarAlCarrito('Pantalón', 320, document.getElementById('cantidad2').value)">Agregar al Carrito</button>
+    </div>
+
+
+    <div class="product">
+        <img src="Chaqueta.jpg" alt="Chaqueta">
+        <h3>Chaqueta Unisex</h3>
+        <p>Chaqueta ideal para días fríos.</p>
+        <p><strong>Precio: $450</strong></p>
+        <label>Cantidad:</label>
+        <input type="number" min="1" value="1" id="cantidad3">
+        <button class="button" onclick="agregarAlCarrito('Chaqueta', 450, document.getElementById('cantidad3').value)">Agregar al Carrito</button>
+    </div>
+
+
+    <div class="product">
+        <img src="Vestido.jpg" alt="Vestido Ligero">
+        <h3>Vestido</h3>
+        <p>Vestido ligero, ideal para el clima cálido.</p>
+        <p><strong>Precio: $420</strong></p>
+        <label>Cantidad:</label>
+        <input type="number" min="1" value="1" id="cantidad4">
+        <button class="button" onclick="agregarAlCarrito('Vestido Ligero', 420, document.getElementById('cantidad4').value)">Agregar al Carrito</button>
+    </div>
+
+
+    <div class="product">
+        <img src="Sudadera.jpg" alt="Sudadera Unisex">
+        <h3>Sudadera Unisex</h3>
+        <p>Sudadera cómoda de algodón para cualquier ocasión.</p>
+        <p><strong>Precio: $220</strong></p>
+        <label>Cantidad:</label>
+        <input type="number" min="1" value="1" id="cantidad5">
+        <button class="button" onclick="agregarAlCarrito('Sudadera Unisex', 220, document.getElementById('cantidad5').value)">Agregar al Carrito</button>
+    </div>
+
+
+    <div class="product">
+        <img src="Gorra.jpg" alt="Gorra Trucker Unisex">
+        <h3>Gorra Trucker Unisex</h3>
+        <p>Gorra unisex lisa con estilo urbano.</p>
+        <p><strong>Precio: $200</strong></p>
+        <label>Cantidad:</label>
+        <input type="number" min="1" value="1" id="cantidad6">
+        <button class="button" onclick="agregarAlCarrito('Gorra Trucker Unisex', 200, document.getElementById('cantidad6').value)">Agregar al Carrito</button>
+    </div>
+
+
+    <div class="product">
+        <img src="Short.jpg" alt="Short Unisex">
+        <h3>Short Unisex</h3>
+        <p>Short tipo deportivo para días casuales.</p>
+        <p><strong>Precio: $180</strong></p>
+        <label>Cantidad:</label>
+        <input type="number" min="1" value="1" id="cantidad7">
+        <button class="button" onclick="agregarAlCarrito('Short Unisex', 180, document.getElementById('cantidad7').value)">Agregar al Carrito</button>
+    </div>
+
+
+    <div class="product">
+        <img src="Falda.jpg" alt="Falda">
+        <h3>Falda</h3>
+        <p>Falda fresca con estampado de lineas blancas para primavera.</p>
+        <p><strong>Precio: $200</strong></p>
+        <label>Cantidad:</label>
+        <input type="number" min="1" value="1" id="cantidad8">
+        <button class="button" onclick="agregarAlCarrito('Falda', 200, document.getElementById('cantidad8').value)">Agregar al Carrito</button>
+    </div>
+
+
+    <div class="product">
+        <img src="PantalonesC.jpg" alt="Pantalon Tipo Cargo Unisex">
+        <h3>Pantalon Tipo Cargo Unisex</h3>
+        <p>Pantalones cómodos con estilo urbano.</p>
+        <p><strong>Precio: $350</strong></p>
+        <label>Cantidad:</label>
+        <input type="number" min="1" value="1" id="cantidad9">
+        <button class="button" onclick="agregarAlCarrito('Calcetas deportivas', 350, document.getElementById('cantidad9').value)">Agregar al Carrito</button>
+    </div>
+
+</section>
+
+<section class="cart" id="carrito">
+    <h3>Carrito de Compras</h3>
+    <ul id="itemsCarrito">
+
+    </ul>
+    <p><strong>Total: $<span id="total">0</span></strong></p>
+</section>
+
+<div class="bottom-button">
+    <button class="buttonC" onclick="irCreditos()">Creditos por:</button>
+</div>
+
+<script>
+    let total = 0;
+
+    function agregarAlCarrito(nombre, precio, cantidad) {
+        cantidad = parseInt(cantidad);
+        if (cantidad > 0) {
+            let subtotal = precio * cantidad;
+            total += subtotal;
+
+            const item = document.createElement('li');
+            item.innerHTML = `${nombre} - Cantidad: ${cantidad} - Subtotal: $${subtotal} 
+            <button onclick="eliminarDelCarrito(this, ${subtotal})" class="delete-button">Eliminar</button>`;
+            document.getElementById('itemsCarrito').appendChild(item);
+
+            document.getElementById('total').textContent = total;
+        } else {
+            alert('Por favor, ingrese una cantidad válida.');
+        }
+    }
+
+    function eliminarDelCarrito(elemento, subtotal) {
+        total -= subtotal;
+        document.getElementById('total').textContent = total;
+        elemento.parentElement.remove();
+    }
+
+    function irCreditos() {
+        window.location.href = "Creditos.html";  
+    }
+</script>
+
+</body>
+</html>
